@@ -11,7 +11,20 @@
 - H2, JPA
 - Redis
 
-## API 명세서 링크
+## API 명세서
+
+# 블로그 검색 서비스
+
+### Description
+입력된 검색어로 카카오, 네이버 등 블로그 검색 Open API를 활용하여 '블로그 검색 서비스'를 제공합니다.
+
+<br>
+
+### HOST
+
+```sh
+#HOST : localhost:8080
+```
 
 ## JAR 다운 링크
 
@@ -40,3 +53,135 @@
   - WebClient 사용을 위해 추가했습니다.
 - Redis
   - 동시성 제어를 위해 추가했습니다.
+
+
+## _API 명세서_
+
+### HOST
+
+```sh
+#HOST : localhost:8080
+```
+<br>
+
+### 작업1 : 키워드를 통해 블로그를 검색 
+___
+```sh
+`GET` /v1/api/blog/search
+```
+#### Request  
+
+*#Parameter*  
+
+|Name|Type|Description|Required|
+|---|---|---|---|
+|keyword|String|검색을 원하는 질의어|O|
+|sort|String|정렬방식, accuracy(정확도순), recency(최신순), 기본값 accuracy|X|
+|page|Integer|결과 페이지 번호, 1~50 사이의 값, 기본값 1|X|
+|size|Integer|한 페이지에 보여질 문서 수, 1~50 사이의 값, 기본값 10|X|
+|vender|String|사용하고자 하는 검색 업체[카카오],[네이버] , 기본값 kakao|X|
+
+<br>
+
+#### Response  
+
+|Name|Type|Description|
+|---|---|---|
+|totalCount|Integer|검색된 문서 수|
+|pageNum|Integer|현재페이지 번호|
+|pageSize|Integer|한 페이지에 보여지는 문서 수|
+|pageEnd|Boolean|현재 페이지가 마지막 페이지인지 여부|
+|blogItemList|List| 블로그 포스팅 정보 배열|
+
+*#blogItemList / 블로그 포스팅 정보 [List]*
+
+|Name|Type|Description|
+|---|---|---|
+|title|String|블로그 글 제목|
+|contents|String|블로그 글 요약|
+|url|String|블로그 글 URL|
+|blogname|String|블로그의 이름|
+|thumbnail|String|검색 시스템에서 추출한 대표 미리보기 이미지 URL|
+|datetime|String|블로그 글 작성시간|
+
+<br>
+
+### 작업1 : Sample
+#### Request
+```sh
+`GET` /v1/api/blog/search?keyword=집짓기&vender=kakao&page=2&size=15
+```
+
+<br>
+
+#### Response
+```shell
+HTTP/1.1 200
+Content-Type: application/json
+{
+    "status": "Success",
+    "data": {
+        "totalCount": 788,
+        "pageNum": 2,
+        "pageSize": 15,
+        "pageEnd": false,
+        "blogItemList": [
+            {
+                "title": "단독주택 <b>집</b><b>짓기....법",
+                "contents": "한다고 말씀 주셨답니다. 인터넷 상에도 마루...",
+                "url": "http://odaily.tistory.com/1193",
+                "blogname": "🌷일상을 공유합니다",
+                "thumbnail": "https://search3.kakaocdn.net/argon/130x130_85_c/B4pjonEuhxm",
+                "datetime": "2023-03-20T22:17:59.000+09:00"
+            },
+            ....
+        ]
+    }
+}
+```
+
+<br>
+
+### 작업2 : 인기 검색어 목록
+___
+
+
+```sh
+`GET` /v1/api/blog/keyword/popular
+```
+
+### Response  
+
+*#인기검색어 Top10 [List]*
+
+|Name|Type|Description|
+|---|---|---|
+|keyword|String|인기검색어|
+|score|Integer|누적 검색수|
+
+<br>
+
+### 작업2 : Sample
+#### Request
+```sh
+`GET` /v1/api/blog/keyword/popular
+```
+
+<br>
+
+#### Response
+```shell
+HTTP/1.1 200
+Content-Type: application/json
+{
+    "status": "Success",
+    "data": [
+        {
+            "keyword": "책",
+            "score": 9
+        },
+        ...
+    ]
+}
+```
+___
