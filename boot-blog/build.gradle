@@ -1,0 +1,9 @@
+
+dependencies {
+    implementation project(':boot-api')
+}
+bootJar{
+    archivesBaseName = 'boot-blog'
+    archiveFileName = 'boot-blog.jar'
+    archiveVersion = "0.0.1"
+}

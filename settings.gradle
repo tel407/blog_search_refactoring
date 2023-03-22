@@ -1,0 +1,6 @@
+rootProject.name = 'blog_search_devtel'
+include 'boot-blog'
+include 'boot-api'
+//include ':infra-search'
+include 'data-blog'
+
