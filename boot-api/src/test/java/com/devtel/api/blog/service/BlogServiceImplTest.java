@@ -2,6 +2,7 @@ package com.devtel.api.blog.service;
 
 import com.devtel.api.blog.TestConfigration;
 import com.devtel.api.blog.dto.BlogDto;
+import com.devtel.api.blog.enums.BlogVenderEnum;
 import com.devtel.api.blog.vender.kakao.KakaoBlogApiDto;
 import com.devtel.api.blog.vender.kakao.KakaoSearchBlog;
 import com.devtel.api.blog.vender.naver.NaverBlogApiDto;
@@ -14,6 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
+
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -41,6 +44,21 @@ class BlogServiceImplTest {
                 .page(2)
                 .size(100)
                 .build();
+    }
+
+
+    @Test
+    @DisplayName("API 실패시 다른 API 도전하도록 도와주는 Fipe 배열 테스트")
+    void apiFipeTest() {
+        blogSearchDto = BlogDto.BlogSearchDto.builder()
+                .keyword("의자")
+                .vender("naver")
+                .build();
+        List<BlogVenderEnum> venderFipe = BlogVenderEnum.getFipe(blogSearchDto.getVender());
+
+        assertThat(venderFipe.size()).isEqualTo(BlogVenderEnum.values().length);
+        assertThat(venderFipe.get(0).getName()).isEqualTo("NAVER");
+        assertThat(venderFipe.get(1).getName()).isEqualTo("KAKAO");
     }
 
     @Test

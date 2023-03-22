@@ -30,7 +30,7 @@ class BlogDataDaoTest {
     private RedisTemplate<String, String> redisTemplate;
 
     @Test
-    @DisplayName("검색 Score 증가 동시성 테스트")
+    @DisplayName("검색 Score 증가 [동시성] 테스트")
     public void incrementScoreTest() throws InterruptedException {
         String keyword = "전화기";
         int prevcount = Integer.parseInt(String.valueOf(Math.round(redisTemplate.opsForZSet().score(RedisEnum.BLOG_KEWORD_SCORE.getKey(), keyword))));
@@ -50,7 +50,7 @@ class BlogDataDaoTest {
     }
 
     @Test
-    @DisplayName("키워드 검색 로그 Async 동시성 테스트")
+    @DisplayName("키워드 검색 로그 Async [ 동시성 ] 테스트")
     public void saveLogTest() throws InterruptedException {
         String keyword = "전화기";
         int numberOfThreads = 10;

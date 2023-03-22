@@ -6,7 +6,7 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum RedisEnum {
-    BLOG_KEWORD_SCORE("keyword_socre")
+    BLOG_KEWORD_SCORE("devtel_keyword_socre")
     ;
 
     private final String key ;
