@@ -3,6 +3,12 @@ package com.devtel.api.blog.enums;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.EnumSet;
+import java.util.List;
+import java.util.stream.Stream;
+
 @Getter
 @AllArgsConstructor
 public enum BlogVenderEnum {
@@ -15,13 +21,17 @@ public enum BlogVenderEnum {
     private final String url ;
     private final int maxLimitSize ;
 
-    public static BlogVenderEnum of(String venderStr) {
+    public static List<BlogVenderEnum> getFipe(String venderStr) {
+        List<BlogVenderEnum> fipeList = new ArrayList<>();
         for(BlogVenderEnum vender : BlogVenderEnum.values()){
             if(vender.name.equals(venderStr.toUpperCase())){
-                return vender;
+                fipeList.add(0,vender);
+                continue;
             }
+            fipeList.add(vender);
         }
-        return BlogVenderEnum.KAKAO_BLOG;
+        return fipeList;
     }
+
 }
 

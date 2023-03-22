@@ -57,7 +57,7 @@ public class KakaoSearchBlog implements IVenderBlog<KakaoBlogApiDto.KakaoBlogApi
             KakaoBlogApiDto.KakaoBlogApiResponseDto  apiResponseDto = callRequestBlogApi(convertParam);
             resultDto = this.convertResDtoToBlogDto(convertParam, apiResponseDto);
         }catch (Exception e){
-            log.error("카카오 BLOG API 호출 ERROR");
+            log.error("카카오 BLOG API 호출 ERROR, 다른 VENDER 사 API 를 호출합니다");
         }
         return resultDto;
     }

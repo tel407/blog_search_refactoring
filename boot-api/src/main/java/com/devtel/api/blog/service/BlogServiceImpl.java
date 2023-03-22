@@ -43,15 +43,19 @@ public class BlogServiceImpl implements BlogService {
     }
 
     /**
-     * Vender 에 의해  검색 엔진 switch
+     * Vender 에 의해  검색 엔진 switch 
+     * PARAMETER 에 요구 Vender가 있으면 제일 먼저 실행 후 실패시 순서대로 다음 Vender 를 실행한다.
      */
     private BlogDto.BlogResultDto getBlogPost(BlogDto.BlogSearchDto blogSearchDto){
-        BlogVenderEnum startVender = BlogVenderEnum.of(blogSearchDto.getVender());
-        if(startVender == BlogVenderEnum.KAKAO_BLOG){
-            return kakaoSearchBlog.getBlogPostingResult(blogSearchDto);
-        }
-        if(startVender == BlogVenderEnum.NAVER_BLOG){
-            return  naverSearchBlog.getBlogPostingResult(blogSearchDto);
+        List<BlogVenderEnum> venderFipe = BlogVenderEnum.getFipe(blogSearchDto.getVender());
+        BlogDto.BlogResultDto result = null;
+        for(BlogVenderEnum vender : venderFipe){
+            if(vender == BlogVenderEnum.KAKAO_BLOG){
+                result = kakaoSearchBlog.getBlogPostingResult(blogSearchDto);
+            }else if(vender == BlogVenderEnum.NAVER_BLOG){
+                result = naverSearchBlog.getBlogPostingResult(blogSearchDto);
+            }
+            if(result != null) return result;
         }
         throw  ErrorCodeEnum.throwNotConnectionApi();
     }

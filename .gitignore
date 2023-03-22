@@ -1,0 +1,10 @@
+# Project exclude paths
+/.gradle/
+/boot-api/out/
+/boot-api/out/production/classes/
+/boot-api/out/test/classes/
+/boot-blog/out/
+/boot-blog/out/production/classes/
+/data-blog/out/
+/data-blog/out/production/classes/
+/data-blog/out/test/classes/

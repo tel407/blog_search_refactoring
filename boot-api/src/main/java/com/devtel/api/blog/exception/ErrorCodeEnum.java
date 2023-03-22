@@ -12,7 +12,7 @@ import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 public enum ErrorCodeEnum {
 
         EMPTY_VALID_KEYWORD(BAD_REQUEST, "블로그 검색어는 필수 값입니다."),
-        BLOG_API_SERVICE_ERROR(INTERNAL_SERVER_ERROR, "API 통신장애"),
+        BLOG_API_SERVICE_ERROR(INTERNAL_SERVER_ERROR, "모든 API 통신장애, 잠시후 다시 시도해주세요"),
         NAVER_BLOG_API_SERVICE_ERROR(INTERNAL_SERVER_ERROR, "현재 네이버 API 통신이 불가능합니다."),
         KAKAO_BLOG_API_SERVICE_ERROR(INTERNAL_SERVER_ERROR, "현재 카카오 API 통신이 불가능합니다.")
         ;

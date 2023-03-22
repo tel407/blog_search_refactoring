@@ -59,7 +59,7 @@ public class NaverSearchBlog implements IVenderBlog<NaverBlogApiDto.NaverBlogApi
             NaverBlogApiDto.NaverBlogApiResponseDto  apiResponseDto = callRequestBlogApi(convertParam);
             resultDto = this.convertResDtoToBlogDto(convertParam, apiResponseDto);
         }catch (Exception e){
-            log.error("네이버 BLOG API 호출 ERROR");
+            log.error("네이버 BLOG API 호출 ERROR, 다른 VENDER 사 API 를 호출합니다");
         }
         return resultDto;
     }
