@@ -52,9 +52,13 @@
 - [인기검색어 목록] 사용자들이 많이 검색한 순서대로, 최대 10개의 검색 키워드를 제공합니다.
 - [인기검색어 목록] 검색어 별로 검색된 횟수도 함께 표기해 주세요.
 - [추가] 멀티 모듈 구성 및 모듈간 의존성 제약
-  - boot-blog [어플리케이션 모듈],
-  - boot-api [API 모듈] ,
-  - data-blog [DATA 모듈] 로 모듈을 나눠 의존성 제약을 두고 의존도를 낮춰 개발하였습니다.
+  - boot-blog[어플리케이션 모듈]
+     - {blogSearchApplication} ,
+  - boot-api [API 모듈] 
+    - {API} , {Service}, { @TEST #API결과검증}
+  - data-blog [DATA 모듈] 
+    - {Domain}, {Repository}, { @TEST #동시성 검증}
+  - 로 모듈을 나눠 의존성 제약을 두고 의존도를 낮춰 개발하였습니다.
   - @TEST는 각 모듈에서 각각 진행하였습니다.
 - [추가] 동시성 이슈가 발생할 수 있는 부분을 염두에 둔 구현 (예시. 키워드 별로 검색된 횟수의 정확도)
   - 동시성을 제어하기 위해 싱글스레드인 Redis 를 이용하였스며 Redis 의 내부적으로 synchronizer.invoke() 하는 increment 를 사용했습니다.
