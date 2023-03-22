@@ -23,12 +23,14 @@
 ```sh
     java -jar devtel-boot-blog.jar
 ```
-
--  git JAR 링크
+-  git JAR 경로 링크
   - https://github.com/tel407/blog_search_devtel/blob/5c3a723d279d8d3eb60c5af450967814c13d8dd7/jar-output/devtel-boot-blog.jar
+
+-  git JAR 다운 링크
+  - https://github.com/tel407/blog_search_devtel/raw/master/jar-output/devtel-boot-blog.jar
  
-- Google JAR 링크
-  - https://drive.google.com/file/d/1eCqtVJm4NlBFtdK7SZDeJAShPW4hxhiu/view?usp=share_link
+- Google JAR 다운 링크
+- https://drive.google.com/file/d/1eCqtVJm4NlBFtdK7SZDeJAShPW4hxhiu/view?usp=share_link
 
 
 ## ✨구현항목 
