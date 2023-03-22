@@ -68,13 +68,13 @@ ___
 
 *#Parameter*  
 
-|Name|Type|Description|Required|
-|---|---|---|---|
-|keyword|String|검색을 원하는 질의어|O|
-|sort|String|정렬방식, accuracy(정확도순), recency(최신순), 기본값 accuracy|X|
-|page|Integer|결과 페이지 번호, 1~50 사이의 값, 기본값 1|X|
-|size|Integer|한 페이지에 보여질 문서 수, 1~50 사이의 값, 기본값 10|X|
-|vender|String|사용하고자 하는 검색 업체[카카오],[네이버] , 기본값 kakao|X|
+|Name|Type|Description|Default|Required|
+|---|---|---|---|---|
+|keyword|String|검색을 원하는 질의어||O|
+|sort|String|정렬방식, accuracy(정확도순), recency(최신순)|accuracy|X|
+|page|Integer|결과 페이지 번호, 1~50 사이의 값|1|X|
+|size|Integer|한 페이지에 보여질 문서 수, 1~50 사이의 값|10|X|
+|vender|String|사용하고자 하는 검색 업체[카카오],[네이버] |kakao|X|
 
 <br>
 
