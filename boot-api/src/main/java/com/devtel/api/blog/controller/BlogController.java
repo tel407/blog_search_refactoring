@@ -25,11 +25,11 @@ public class BlogController {
      */
     @GetMapping("/search")
     public ApiSuccessResponse<BlogDto.BlogResultDto> searchBlogByKeyword(
-            @RequestParam(value = "keyword", required = true) String keyword,
-            @RequestParam(value = "sort", required = false, defaultValue = "ACCURACY") String sort,
-            @RequestParam(value = "page", required = false, defaultValue = "1") Integer page,
-            @RequestParam(value = "size", required = false, defaultValue = "10") Integer size,
-            @RequestParam(value = "vender", required = false, defaultValue = "KAKAO") String vender
+            @RequestParam(value = "keyword") String keyword,
+            @RequestParam(value = "sort", defaultValue = "ACCURACY") String sort,
+            @RequestParam(value = "vender", defaultValue = "KAKAO") String vender,
+            @RequestParam(value = "page", defaultValue = "1") int page,
+            @RequestParam(value = "size", defaultValue = "10") int size
     ){
         BlogDto.BlogResultDto searchBlogByKeywordList = blogService.getBlogSearchByKeyword(
                 BlogDto.BlogSearchDto.builder()

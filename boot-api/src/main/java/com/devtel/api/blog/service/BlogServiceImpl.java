@@ -47,9 +47,9 @@ public class BlogServiceImpl implements BlogService {
      * PARAMETER 에 요구 Vender가 있으면 제일 먼저 실행 후 실패시 순서대로 다음 Vender 를 실행한다.
      */
     private BlogDto.BlogResultDto getBlogPost(BlogDto.BlogSearchDto blogSearchDto){
-        List<BlogVenderEnum> venderFipe = BlogVenderEnum.getFipe(blogSearchDto.getVender());
+        List<BlogVenderEnum> venderPipe = BlogVenderEnum.getPipe(blogSearchDto.getVender());
         BlogDto.BlogResultDto result = null;
-        for(BlogVenderEnum vender : venderFipe){
+        for(BlogVenderEnum vender : venderPipe){
             if(vender == BlogVenderEnum.KAKAO_BLOG){
                 result = kakaoSearchBlog.getBlogPostingResult(blogSearchDto);
             }else if(vender == BlogVenderEnum.NAVER_BLOG){

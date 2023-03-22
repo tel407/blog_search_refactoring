@@ -21,16 +21,16 @@ public enum BlogVenderEnum {
     private final String url ;
     private final int maxLimitSize ;
 
-    public static List<BlogVenderEnum> getFipe(String venderStr) {
-        List<BlogVenderEnum> fipeList = new ArrayList<>();
+    public static List<BlogVenderEnum> getPipe(String venderStr) {
+        List<BlogVenderEnum> pipeList = new ArrayList<>();
         for(BlogVenderEnum vender : BlogVenderEnum.values()){
             if(vender.name.equals(venderStr.toUpperCase())){
-                fipeList.add(0,vender);
+                pipeList.add(0,vender);
                 continue;
             }
-            fipeList.add(vender);
+            pipeList.add(vender);
         }
-        return fipeList;
+        return pipeList;
     }
 
 }

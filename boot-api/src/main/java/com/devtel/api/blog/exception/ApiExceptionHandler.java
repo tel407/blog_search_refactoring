@@ -25,33 +25,30 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 	 */
 	@Override
 	protected ResponseEntity<Object> handleHttpRequestMethodNotSupported(
-			HttpRequestMethodNotSupportedException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
-
+			HttpRequestMethodNotSupportedException e, HttpHeaders headers, HttpStatus status, WebRequest request) {
 		StringBuilder builder = new StringBuilder();
-		builder.append(ex.getMethod());
+		builder.append(e.getMethod());
 		builder.append(" method is not supported for this request. Supported methods are ");
-
-		Set<HttpMethod> supportedHttpMethods = ex.getSupportedHttpMethods();
+		Set<HttpMethod> supportedHttpMethods = e.getSupportedHttpMethods();
 		if (supportedHttpMethods != null) {
 			supportedHttpMethods.forEach(t -> builder.append(t).append(" "));
 		}
-
-		return ResponseEntity.status(METHOD_NOT_ALLOWED).body(ApiErrorResponse.createError(METHOD_NOT_ALLOWED,ex.getLocalizedMessage(),builder.toString()));
+		return ResponseEntity.status(METHOD_NOT_ALLOWED).body(ApiErrorResponse.createError(METHOD_NOT_ALLOWED,e.getLocalizedMessage(),builder.toString()));
 	}
 	/**
 	 * 커스텀 오류 체크 ErrorCodeEnum.class 참조
 	 */
 	@ExceptionHandler(value = CustomException.class)
-	protected ResponseEntity<ApiErrorResponse<?>> handleCustomException(CustomException ex) {
-		ErrorCodeEnum errorCode = ex.getErrorCode();
+	protected ResponseEntity<ApiErrorResponse<?>> handleCustomException(CustomException e) {
+		ErrorCodeEnum errorCode = e.getErrorCode();
 		return ResponseEntity.status(errorCode.getCode()).body(ApiErrorResponse.createError(errorCode.getCode(),errorCode.getDetail(),""));
 	}
 	/**
 	 * 그외 Exception
 	 */
 	@ExceptionHandler(value ={Exception.class, RuntimeException.class})
-	public ResponseEntity<ApiErrorResponse<?>> handleNoOtherExceptions(Exception ex) {
-		return ResponseEntity.status(BAD_REQUEST).body(ApiErrorResponse.createError(BAD_REQUEST,ex.getLocalizedMessage(), "오류가 발생했습니다."));
+	public ResponseEntity<ApiErrorResponse<?>> handleNoOtherExceptions(Exception e) {
+		return ResponseEntity.status(BAD_REQUEST).body(ApiErrorResponse.createError(BAD_REQUEST,e.getLocalizedMessage(), "오류가 발생했습니다."));
 	}
 
 }

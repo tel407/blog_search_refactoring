@@ -48,17 +48,17 @@ class BlogServiceImplTest {
 
 
     @Test
-    @DisplayName("API 실패시 다른 API 도전하도록 도와주는 Fipe 배열 테스트")
-    void apiFipeTest() {
+    @DisplayName("API 실패시 다른 API 도전하도록 도와주는 Pipe 배열 테스트")
+    void apiPipeTest() {
         blogSearchDto = BlogDto.BlogSearchDto.builder()
                 .keyword("의자")
                 .vender("naver")
                 .build();
-        List<BlogVenderEnum> venderFipe = BlogVenderEnum.getFipe(blogSearchDto.getVender());
+        List<BlogVenderEnum> venderPipe = BlogVenderEnum.getPipe(blogSearchDto.getVender());
 
-        assertThat(venderFipe.size()).isEqualTo(BlogVenderEnum.values().length);
-        assertThat(venderFipe.get(0).getName()).isEqualTo("NAVER");
-        assertThat(venderFipe.get(1).getName()).isEqualTo("KAKAO");
+        assertThat(venderPipe.size()).isEqualTo(BlogVenderEnum.values().length);
+        assertThat(venderPipe.get(0).getName()).isEqualTo("NAVER");
+        assertThat(venderPipe.get(1).getName()).isEqualTo("KAKAO");
     }
 
     @Test
