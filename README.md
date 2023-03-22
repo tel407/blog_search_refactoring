@@ -83,6 +83,10 @@ ___
 ```sh
 `GET` /v1/api/blog/search
 ```
+```sh
+`GET` http://localhost:8080/v1/api/blog/search?keyword=집짓기&vender=kakao&page=2&size=15
+```
+
 #### Request  
 
 *#Parameter*  
@@ -123,7 +127,7 @@ ___
 ### 작업1 : Sample
 #### Request
 ```sh
-`GET` /v1/api/blog/search?keyword=집짓기&vender=kakao&page=2&size=15
+`GET` http://localhost:8080/v1/api/blog/search?keyword=집짓기&vender=kakao&page=2&size=15
 ```
 
 <br>
@@ -163,7 +167,9 @@ ___
 ```sh
 `GET` /v1/api/blog/keyword/popular
 ```
-
+```sh
+`GET` http://localhost:8080/v1/api/blog/keyword/popular
+```
 ### Response  
 
 *#인기검색어 Top10 [List]*
@@ -178,7 +184,7 @@ ___
 ### 작업2 : Sample
 #### Request
 ```sh
-`GET` /v1/api/blog/keyword/popular
+`GET` http://localhost:8080/v1/api/blog/keyword/popular
 ```
 
 <br>
