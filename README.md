@@ -1,6 +1,20 @@
 # ✨블로그 검색 서비스 리펙토링 하기
 ### Description
-이웃집 repository 인 blog_search_devtel를 리펙토링 해보자
+이웃집 repository 인 blog_search_devtel를 리펙토링 해보자~ ing
+
+## 리펙토링 이력 및 생각
+### 1. [REFT] Controller와 Service 레이어의 강한 결합 의존성 낮추기
+현재 Request 에서 오는 Param을  Contorller,Service 레이어에서 같은 DTO 를 사용 하면 Service 에서 Contoller를 의존하게 된다, 이는
+1. Service레이어가 모듈로 분리되는 경우 해당 Dto을 사용할 수 없다.
+2. 서비스에서 원하는 포맷과 컨트롤러에서 원하는 포맷이 다를 수 있다.
+
+필요한 DTO 를 따로 만들어 의존도를 낮추자.
+
+[AS-IS]
+![img.png](readme_img/img.png)
+[TO-BE]
+![img.png](readme_img/img_1.png)
+
 
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 

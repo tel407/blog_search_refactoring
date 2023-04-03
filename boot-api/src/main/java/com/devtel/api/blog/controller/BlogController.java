@@ -24,22 +24,11 @@ public class BlogController {
      *[키워드 검색 API]
      */
     @GetMapping("/search")
-    public ApiSuccessResponse<BlogDto.BlogResultDto> searchBlogByKeyword(
-            @RequestParam(value = "keyword") String keyword,
-            @RequestParam(value = "sort", defaultValue = "ACCURACY") String sort,
-            @RequestParam(value = "vender", defaultValue = "KAKAO") String vender,
-            @RequestParam(value = "page", defaultValue = "1") int page,
-            @RequestParam(value = "size", defaultValue = "10") int size
-    ){
-        BlogDto.BlogResultDto searchBlogByKeywordList = blogService.getBlogSearchByKeyword(
-                BlogDto.BlogSearchDto.builder()
-                        .keyword(keyword.trim())
-                        .sort(sort.trim())
-                        .vender(vender.trim())
-                        .page(page)
-                        .size(size)
-                        .build()
-        );
+    public ApiSuccessResponse<BlogDto.BlogResultDto> searchBlogByKeyword( BlogDto.BlogSearchRequestDto blogSearchRequestDto ){
+        /*
+        * [REFT] Service 레이어와 Controller 레이어의 DTO 를 분리 함으로서 의존관계를 낮춤
+        * */
+        BlogDto.BlogResultDto searchBlogByKeywordList = blogService.getBlogSearchByKeyword(blogSearchRequestDto.toService());
         return ApiSuccessResponse.createSuccess(searchBlogByKeywordList);
     }
 

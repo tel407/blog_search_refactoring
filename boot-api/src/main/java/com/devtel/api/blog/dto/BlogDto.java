@@ -3,7 +3,9 @@ package com.devtel.api.blog.dto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 public class BlogDto {
@@ -13,12 +15,37 @@ public class BlogDto {
      */
     @Getter
     @Builder
+    public static class BlogSearchRequestDto {
+        @NotNull(message = "검색 키워드는 필수 입니다.")
+        private String keyword;
+        private String sort = "ACCURACY";
+        private int page = 1;
+        private int size = 10;
+        private String vender = "KAKAO";
+
+        public BlogSearchDto toService() {
+            return BlogSearchDto.builder()
+                    .keyword(this.keyword)
+                    .sort(this.sort)
+                    .page(this.page)
+                    .size(this.size)
+                    .vender(this.vender)
+                    .build();
+        }
+    }
+
+    /**
+     * 블로그 검색 API Service Dto
+     */
+    @Getter
+    @Builder
     public static class BlogSearchDto {
         private String keyword;
         private String sort;
         private int page;
         private int size;
         private String vender;
+
     }
 
     /**
