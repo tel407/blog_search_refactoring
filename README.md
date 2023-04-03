@@ -1,8 +1,8 @@
-# ✨블로그 검색 서비스
+# ✨블로그 검색 서비스 리펙토링 하기
 ### Description
-검색어로 카카오와, 네이버 블로그를 검색해보자
+이웃집 repository 인 blog_search_devtel를 리펙토링 해보자
 
-<br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 ## 개발환경
 - JAVA11
