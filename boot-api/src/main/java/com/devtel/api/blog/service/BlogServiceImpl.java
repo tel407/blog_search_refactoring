@@ -1,8 +1,9 @@
 package com.devtel.api.blog.service;
 
+import com.devtel.api.blog.config.exception.BlogCustomException;
 import com.devtel.api.blog.dto.BlogDto;
 import com.devtel.api.blog.enums.BlogVenderEnum;
-import com.devtel.api.blog.exception.ErrorCodeEnum;
+import com.devtel.api.blog.config.exception.ErrorCodeEnum;
 import com.devtel.api.blog.vender.kakao.KakaoSearchBlog;
 import com.devtel.api.blog.vender.naver.NaverSearchBlog;
 import com.devtel.data.blog.search.dto.PopularKeywordDataDto;
@@ -22,24 +23,14 @@ public class BlogServiceImpl implements BlogService {
     private final NaverSearchBlog naverSearchBlog;      //네이버 Vender 객체
 
     /**
-     * 키워드 Validation
-     */
-    private void validParam(BlogDto.BlogSearchDto blogSearchDto) {
-        if(blogSearchDto.getKeyword() == null || blogSearchDto.getKeyword().equals("")) {
-            throw ErrorCodeEnum.throwEmptyKeywordValid();
-        }
-    }
-
-    /**
      * 블로그 페이징 및 포스팅 가져오기
      */
     @Override
     public BlogDto.BlogResultDto getBlogSearchByKeyword(BlogDto.BlogSearchDto blogSearchDto) {
-        this.validParam(blogSearchDto);
         this.keywordIncrementScore(blogSearchDto.getKeyword());
         //[데이터모듈] 검색어 로그 저장 Async 비동기로 진행 
         blogDataDaoService.saveSearchKeywordLog(blogSearchDto.getKeyword());
-        return getBlogPost(blogSearchDto);
+        return this.getBlogPost(blogSearchDto);
     }
 
     /**
@@ -57,7 +48,7 @@ public class BlogServiceImpl implements BlogService {
             }
             if(result != null) return result;
         }
-        throw  ErrorCodeEnum.throwNotConnectionApi();
+        throw new BlogCustomException(ErrorCodeEnum.BLOG_VENDOR_ALL_ERROR);
     }
 
     /**

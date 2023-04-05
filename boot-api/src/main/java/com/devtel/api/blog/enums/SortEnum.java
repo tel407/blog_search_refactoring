@@ -17,9 +17,11 @@ public enum SortEnum {
     private final String naver ;
 
     public static SortEnum of(String sortStr) {
-        for(SortEnum sort : SortEnum.values()){
-            if(sort.kakao.equals(sortStr.toLowerCase()) || sort.naver.equals(sortStr.toLowerCase())){
-                return sort;
+        if(sortStr != null) {
+            for (SortEnum sort : SortEnum.values()) {
+                if (sort.kakao.equals(sortStr.toLowerCase()) || sort.naver.equals(sortStr.toLowerCase())) {
+                    return sort;
+                }
             }
         }
         return SortEnum.ACCURACY;

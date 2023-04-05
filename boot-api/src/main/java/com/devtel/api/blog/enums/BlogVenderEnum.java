@@ -24,7 +24,7 @@ public enum BlogVenderEnum {
     public static List<BlogVenderEnum> getPipe(String venderStr) {
         List<BlogVenderEnum> pipeList = new ArrayList<>();
         for(BlogVenderEnum vender : BlogVenderEnum.values()){
-            if(vender.name.equals(venderStr.toUpperCase())){
+            if(venderStr != null && vender.name.equals(venderStr.toUpperCase())){
                 pipeList.add(0,vender);
                 continue;
             }
