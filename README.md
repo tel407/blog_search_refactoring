@@ -3,6 +3,10 @@
 나의 과거 이웃집 repository 인 blog_search_devtel를 리펙토링 해보자~ ing
 
 ## 리펙토링 이력 및 생각
+
+### 0. [REFT] [boot-api]  Resilience4j Circuit breaker 를 통해 [카카오 블로그 검색 API에 장애가 발생한 경우, 네이버 블로그 검색 API를 통해 데이터 제공] 요구사항을 해결해보자
+
+<br>
 ### 1. [REFT] [boot-api] Controller와 Service 레이어의 강한 결합 의존성 낮추기
 현재 Request 에서 오는 Param을  Contorller,Service 레이어에서 같은 _DTO 를 사용 하면 Service 에서 Contoller를 의존하게 된다, 이는
 1. Service레이어가 모듈로 분리되는 경우 해당 Dto을 사용할 수 없다.
